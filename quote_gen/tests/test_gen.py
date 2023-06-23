@@ -1,7 +1,7 @@
-from conftest import client
+from conftest import app
 
 
-def test_status_code_ok(client):
+def test_status_code_ok(app):
     response = client.get('/')
     assert response.status_code == 200
 
