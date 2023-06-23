@@ -1,5 +1,7 @@
 name: Docker Test Quote Disp
 
+permissions: write-all
+
 on:
   push:
     branches:
@@ -28,7 +30,6 @@ jobs:
         docker run -d --name quote-disp-container -p 5001:5001 quote-disp-service
     
   test:
-    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo code
