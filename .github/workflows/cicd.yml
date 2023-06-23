@@ -17,17 +17,14 @@ jobs:
     - uses: actions/checkout@v3
     - name: Create Docker files
       run: |
-        cd quote_disp
-        docker build . --file Dockerfile --tag quote_disp
-        cd ..
-        cd quote_gen
-        docker build . --file Dockerfile --tag quote_gen
+        docker build -t quote-disp-service ./quote_disp
+        docker build -t quote-gen-service ./quote_gen
     - name: Create Docker Network
       run:  docker network create quote-network
     - name: Create Docker container
       run:  | 
-        docker run -d --name quote-gen-container -p 5000:5000 quote-gen-service
         docker run -d --name quote-disp-container -p 5001:5001 quote-disp-service
+        docker run -d --name quote-gen-container -p 5000:5000 quote-gen-service
     
   test:
     runs-on: ubuntu-latest
