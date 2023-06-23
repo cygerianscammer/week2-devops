@@ -2,6 +2,8 @@ name: Docker Test Quote Disp
 
 on:
   push:
+    paths:
+      - qoute_disp/**
     branches:
       - main
   pull_request:
