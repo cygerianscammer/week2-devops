@@ -1,6 +1,8 @@
-from myapp import create_app
+import pytest
+from app import create_app
 
 @pytest.fixture
-def app():
+def client():
     app = create_app()
-    return app
+    with app.test_client() as client:
+        yield client
